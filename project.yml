@@ -1,0 +1,42 @@
+name: YarMinsk
+options:
+  bundleIdPrefix: by.yarminsk
+  deploymentTarget:
+    iOS: "16.0"
+  xcodeVersion: "16.0"
+  generateEmptyDirectories: true
+
+packages:
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    from: 11.8.0
+  GoogleSignIn:
+    url: https://github.com/google/GoogleSignIn-iOS.git
+    from: 8.0.0
+
+targets:
+  YarMinsk:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: Sources
+      - path: Resources
+    dependencies:
+      - package: Firebase
+        product: FirebaseAuth
+      - package: Firebase
+        product: FirebaseDatabase
+      - package: GoogleSignIn
+        product: GoogleSignIn
+      - package: GoogleSignIn
+        product: GoogleSignInSwift
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: by.yarminsk.app
+      PRODUCT_NAME: YarMinsk
+      INFOPLIST_FILE: Resources/Info.plist
+      SWIFT_VERSION: "5.0"
+      ENABLE_USER_SCRIPT_SANDBOXING: NO
+      CODE_SIGN_IDENTITY: ""
+      CODE_SIGNING_REQUIRED: NO
+      CODE_SIGNING_ALLOWED: NO
