@@ -115,6 +115,7 @@ public final class LoyaltyViewModel: ObservableObject {
             try await authService.signOut()
         } catch {
             self.errorMessage = error.localizedDescription
+            return
         }
 
         sessionStorage.clearToken()

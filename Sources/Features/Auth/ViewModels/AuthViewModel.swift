@@ -1,192 +1,146 @@
 import Foundation
 import Combine
 
-/// View model responsible for authentication flows, input validation, and session management.
+/// Coordinates provider sign-in and keeps UI state in sync with the authenticated Firebase user.
 @MainActor
 public final class AuthViewModel: ObservableObject {
     private let authService: AuthServiceProtocol
     private let sessionStorage: SessionStorageProtocol
+    private let socialSignInProvider: SocialSignInProviding
 
     @Published public var email: String = ""
     @Published public var password: String = ""
     @Published public var errorMessage: String? = nil
     @Published public var isLoading: Bool = false
-    @Published public var isAuthenticated: Bool = false
-    @Published public var currentUser: UserProfile? = nil
+    @Published public private(set) var isAuthenticated: Bool = false
+    @Published public private(set) var currentUser: UserProfile? = nil
 
     public init(
         authService: AuthServiceProtocol,
-        sessionStorage: SessionStorageProtocol
+        sessionStorage: SessionStorageProtocol,
+        socialSignInProvider: SocialSignInProviding? = nil
     ) {
         self.authService = authService
         self.sessionStorage = sessionStorage
-
-        if let existingUser = authService.currentUser() {
-            self.currentUser = existingUser
-            self.isAuthenticated = true
-        } else if let savedToken = sessionStorage.getToken(), !savedToken.isEmpty {
-            self.isAuthenticated = true
-        }
+        self.socialSignInProvider = socialSignInProvider ?? SocialSignInProvider()
+        updateAuthState(authService.currentUser())
     }
 
-    // MARK: - Validation
+    public var isEmailValid: Bool { ValidationRules.isValidEmail(email) }
+    public var isPasswordValid: Bool { ValidationRules.isValidPassword(password) }
+    public var isFormValid: Bool { isEmailValid && isPasswordValid }
+    public var isSignInFormValid: Bool { isEmailValid && !password.isEmpty }
 
-    public var isEmailValid: Bool {
-        ValidationRules.isValidEmail(email)
+    public func validateEmail() -> Bool { isEmailValid }
+    public func validatePassword() -> Bool { isPasswordValid }
+    public func validateForm() -> Bool { isFormValid }
+
+    public func updateAuthState(_ profile: UserProfile?) {
+        currentUser = profile
+        isAuthenticated = profile != nil
+        // Remove the old UID marker; Firebase persists and validates the actual credentials.
+        sessionStorage.clearToken()
+        if profile == nil { password = "" }
     }
 
-    public var isPasswordValid: Bool {
-        ValidationRules.isValidPassword(password)
-    }
-
-    public var isFormValid: Bool {
-        isEmailValid && isPasswordValid
-    }
-
-    public func validateEmail() -> Bool {
-        ValidationRules.isValidEmail(email)
-    }
-
-    public func validatePassword() -> Bool {
-        ValidationRules.isValidPassword(password)
-    }
-
-    public func validateForm() -> Bool {
-        validateEmail() && validatePassword()
-    }
-
-    // MARK: - Authentication Actions
-
-    public func signInWithEmail() async {
+    @discardableResult
+    public func signInWithEmail() async -> Bool {
+        guard !isLoading else { return false }
         errorMessage = nil
-
-        guard validateEmail() else {
+        guard isEmailValid else {
             errorMessage = "Введите корректный адрес электронной почты"
-            return
+            return false
         }
-
-        guard validatePassword() else {
-            errorMessage = "Пароль должен содержать не менее 6 символов"
-            return
+        guard !password.isEmpty else {
+            errorMessage = "Введите пароль"
+            return false
         }
-
-        isLoading = true
-        defer { isLoading = false }
-
-        do {
-            let normalizedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines)
-            let profile = try await authService.signInWithEmail(email: normalizedEmail, password: password)
-            currentUser = profile
-            sessionStorage.saveToken(profile.id)
-            isAuthenticated = true
-        } catch let error as LocalizedError {
-            errorMessage = error.errorDescription ?? error.localizedDescription
-        } catch {
-            errorMessage = error.localizedDescription
+        let normalizedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines)
+        let enteredPassword = password
+        return await authenticate {
+            try await self.authService.signInWithEmail(email: normalizedEmail, password: enteredPassword)
         }
     }
 
-    public func signUpWithEmail() async {
+    @discardableResult
+    public func signUpWithEmail() async -> Bool {
+        guard !isLoading else { return false }
         errorMessage = nil
-
-        guard validateEmail() else {
+        guard isEmailValid else {
             errorMessage = "Введите корректный адрес электронной почты"
-            return
+            return false
         }
-
-        guard validatePassword() else {
+        guard isPasswordValid else {
             errorMessage = "Пароль должен содержать не менее 6 символов"
-            return
+            return false
         }
-
-        isLoading = true
-        defer { isLoading = false }
-
-        do {
-            let normalizedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines)
-            let profile = try await authService.signUpWithEmail(email: normalizedEmail, password: password)
-            currentUser = profile
-            sessionStorage.saveToken(profile.id)
-            isAuthenticated = true
-        } catch let error as LocalizedError {
-            errorMessage = error.errorDescription ?? error.localizedDescription
-        } catch {
-            errorMessage = error.localizedDescription
+        let normalizedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines)
+        let enteredPassword = password
+        return await authenticate {
+            try await self.authService.signUpWithEmail(email: normalizedEmail, password: enteredPassword)
         }
     }
 
-    public func signInWithApple(
-        idToken: String = "mock_apple_identity_token",
-        rawNonce: String = "mock_nonce",
-        fullName: PersonNameComponents? = nil
-    ) async {
-        errorMessage = nil
-        isLoading = true
-        defer { isLoading = false }
-
-        do {
-            let profile = try await authService.signInWithApple(
-                idToken: idToken,
-                rawNonce: rawNonce,
-                fullName: fullName
+    @discardableResult
+    public func signInWithApple() async -> Bool {
+        await authenticate {
+            let tokens = try await self.socialSignInProvider.signInWithApple()
+            return try await self.authService.signInWithApple(
+                idToken: tokens.idToken,
+                rawNonce: tokens.rawNonce,
+                fullName: tokens.fullName
             )
-            currentUser = profile
-            sessionStorage.saveToken(profile.id)
-            isAuthenticated = true
-        } catch let error as LocalizedError {
-            errorMessage = error.errorDescription ?? error.localizedDescription
-        } catch {
-            errorMessage = error.localizedDescription
         }
     }
 
-    public func signInWithGoogle(
-        idToken: String = "mock_google_id_token",
-        accessToken: String = "mock_google_access_token"
-    ) async {
-        errorMessage = nil
-        isLoading = true
-        defer { isLoading = false }
-
-        do {
-            let profile = try await authService.signInWithGoogle(
-                idToken: idToken,
-                accessToken: accessToken
+    @discardableResult
+    public func signInWithGoogle() async -> Bool {
+        await authenticate {
+            let tokens = try await self.socialSignInProvider.signInWithGoogle()
+            return try await self.authService.signInWithGoogle(
+                idToken: tokens.idToken,
+                accessToken: tokens.accessToken
             )
-            currentUser = profile
-            sessionStorage.saveToken(profile.id)
-            isAuthenticated = true
-        } catch let error as LocalizedError {
-            errorMessage = error.errorDescription ?? error.localizedDescription
-        } catch {
-            errorMessage = error.localizedDescription
         }
     }
 
     public func signOut() async {
+        guard !isLoading else { return }
         isLoading = true
+        errorMessage = nil
         defer { isLoading = false }
-
         do {
             try await authService.signOut()
-            sessionStorage.clearToken()
-            currentUser = nil
-            isAuthenticated = false
+            updateAuthState(nil)
             resetForm()
-        } catch let error as LocalizedError {
-            errorMessage = error.errorDescription ?? error.localizedDescription
         } catch {
             errorMessage = error.localizedDescription
         }
     }
 
-    public func clearError() {
-        errorMessage = nil
-    }
+    public func clearError() { errorMessage = nil }
 
     public func resetForm() {
         email = ""
         password = ""
         errorMessage = nil
+    }
+
+    private func authenticate(_ action: () async throws -> UserProfile) async -> Bool {
+        guard !isLoading else { return false }
+        isLoading = true
+        errorMessage = nil
+        defer { isLoading = false }
+        do {
+            let profile = try await action()
+            updateAuthState(profile)
+            password = ""
+            return true
+        } catch AuthServiceError.cancelled {
+            return false
+        } catch {
+            errorMessage = error.localizedDescription
+            return false
+        }
     }
 }

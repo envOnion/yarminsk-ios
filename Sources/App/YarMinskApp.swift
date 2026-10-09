@@ -1,5 +1,6 @@
 import SwiftUI
 import FirebaseCore
+import GoogleSignIn
 
 @main
 struct YarMinskApp: App {
@@ -41,6 +42,9 @@ struct YarMinskApp: App {
                 .environmentObject(container)
                 .environmentObject(router)
                 .preferredColorScheme(.dark)
+                .onOpenURL { url in
+                    GIDSignIn.sharedInstance.handle(url)
+                }
         }
     }
 }

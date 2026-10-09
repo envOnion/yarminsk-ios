@@ -31,12 +31,42 @@ targets:
         product: GoogleSignIn
       - package: GoogleSignIn
         product: GoogleSignInSwift
+    entitlements:
+      path: Configuration/YarMinsk.entitlements
+      properties:
+        com.apple.developer.applesignin: [Default]
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: by.yarminsk.app
       PRODUCT_NAME: YarMinsk
       INFOPLIST_FILE: Resources/Info.plist
       SWIFT_VERSION: "5.0"
       ENABLE_USER_SCRIPT_SANDBOXING: NO
-      CODE_SIGN_IDENTITY: ""
-      CODE_SIGNING_REQUIRED: NO
-      CODE_SIGNING_ALLOWED: NO
+      CODE_SIGN_STYLE: Automatic
+      DEVELOPMENT_TEAM: 2W876M34X7
+  YarMinskTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: Tests
+    dependencies:
+      - target: YarMinsk
+    settings:
+      GENERATE_INFOPLIST_FILE: YES
+      SWIFT_VERSION: "5.0"
+
+schemes:
+  YarMinsk:
+    build:
+      targets:
+        YarMinsk: all
+    test:
+      targets: [YarMinskTests]
+  YarMinskLiveAuth:
+    build:
+      targets:
+        YarMinsk: all
+    test:
+      targets: [YarMinskTests]
+      environmentVariables:
+        YAR_FIREBASE_LIVE_TEST: "1"

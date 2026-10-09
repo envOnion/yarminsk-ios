@@ -1,6 +1,7 @@
 import Foundation
 
 public enum AuthServiceError: LocalizedError, Sendable {
+    case cancelled
     case invalidCredentials
     case userNotFound
     case userAlreadyExists
@@ -10,6 +11,8 @@ public enum AuthServiceError: LocalizedError, Sendable {
 
     public var errorDescription: String? {
         switch self {
+        case .cancelled:
+            return nil
         case .invalidCredentials:
             return "Неверный email или пароль"
         case .userNotFound:

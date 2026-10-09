@@ -89,8 +89,7 @@ public struct SignUpView: View {
                         // Primary Register Button
                         PrimaryButton("ЗАРЕГИСТРИРОВАТЬСЯ", isLoading: viewModel.isLoading) {
                             Task {
-                                await viewModel.signUpWithEmail()
-                                handleAuthResult()
+                                if await viewModel.signUpWithEmail() { handleAuthResult() }
                             }
                         }
                         .disabled(!viewModel.isFormValid || viewModel.isLoading)
@@ -107,8 +106,7 @@ public struct SignUpView: View {
                                 borderColor: .white
                             ) {
                                 Task {
-                                    await viewModel.signInWithGoogle()
-                                    handleAuthResult()
+                                    if await viewModel.signInWithGoogle() { handleAuthResult() }
                                 }
                             }
                             .disabled(viewModel.isLoading)
@@ -119,8 +117,7 @@ public struct SignUpView: View {
                                 borderColor: .white
                             ) {
                                 Task {
-                                    await viewModel.signInWithApple()
-                                    handleAuthResult()
+                                    if await viewModel.signInWithApple() { handleAuthResult() }
                                 }
                             }
                             .disabled(viewModel.isLoading)

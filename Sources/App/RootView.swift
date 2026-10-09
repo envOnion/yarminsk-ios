@@ -6,6 +6,7 @@ public struct RootView: View {
 
     @StateObject private var authViewModel: AuthViewModel
     @StateObject private var loyaltyViewModel: LoyaltyViewModel
+    @State private var selectedTab: GuestTab = .home
 
     public init(container: AppContainer) {
         _authViewModel = StateObject(wrappedValue: AuthViewModel(
@@ -20,6 +21,27 @@ public struct RootView: View {
     }
 
     public var body: some View {
+        TabView(selection: $selectedTab) {
+            GuestHomeView(onMenu: { selectedTab = .menu }, onContacts: { selectedTab = .contacts },
+                          onLoyalty: { selectedTab = .loyalty })
+                .tabItem { Label("Главная", systemImage: "house") }.tag(GuestTab.home)
+            MenuView()
+                .tabItem { Label("Меню", systemImage: "fork.knife") }.tag(GuestTab.menu)
+            ContactsView()
+                .tabItem { Label("Контакты", systemImage: "mappin.and.ellipse") }.tag(GuestTab.contacts)
+            loyaltyContent
+                .tabItem { Label("Моя карта", systemImage: "qrcode") }.tag(GuestTab.loyalty)
+        }
+        .tint(.yarSecondary)
+        .task {
+            for await profile in container.authService.observeAuthState() {
+                authViewModel.updateAuthState(profile)
+                router.navigate(to: profile == nil ? .entry : .main)
+            }
+        }
+    }
+
+    private var loyaltyContent: some View {
         ZStack {
             Color.yarSubject95
                 .ignoresSafeArea()
@@ -52,36 +74,11 @@ public struct RootView: View {
                 .transition(.move(edge: .trailing).combined(with: .opacity))
             case .main:
                 HomeView(viewModel: loyaltyViewModel)
+                    .id(authViewModel.currentUser?.id)
                     .transition(.opacity)
             }
         }
         .animation(.easeInOut(duration: 0.25), value: router.currentRoute)
-        .task {
-            // Check current user session on launch
-            if let user = container.authService.currentUser() {
-                authViewModel.currentUser = user
-                authViewModel.isAuthenticated = true
-                router.navigate(to: .main)
-            } else if container.sessionStorage.getToken() != nil {
-                // If token exists, wait briefly or observe auth
-                router.navigate(to: .main)
-            } else {
-                router.navigate(to: .entry)
-            }
-
-            // Observe auth state changes
-            for await profile in container.authService.observeAuthState() {
-                if profile != nil {
-                    if router.currentRoute != .main {
-                        router.navigate(to: .main)
-                    }
-                } else {
-                    if router.currentRoute == .main {
-                        router.navigate(to: .entry)
-                    }
-                }
-            }
-        }
     }
 
     private var splashView: some View {
@@ -91,4 +88,8 @@ public struct RootView: View {
                 .tint(.yarSecondary)
         }
     }
+}
+
+private enum GuestTab: Hashable {
+    case home, menu, contacts, loyalty
 }

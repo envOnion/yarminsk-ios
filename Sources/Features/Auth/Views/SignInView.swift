@@ -38,9 +38,6 @@ public struct SignInView: View {
     }
 
     private var passwordValidationMessage: String? {
-        if !viewModel.password.isEmpty && !viewModel.isPasswordValid {
-            return "Пароль должен содержать не менее 6 символов"
-        }
         return nil
     }
 
@@ -89,8 +86,7 @@ public struct SignInView: View {
                         // Action Button
                         PrimaryButton("ВОЙТИ", isLoading: viewModel.isLoading) {
                             Task {
-                                await viewModel.signInWithEmail()
-                                if viewModel.isAuthenticated {
+                                if await viewModel.signInWithEmail() {
                                     if let onSuccess {
                                         onSuccess()
                                     } else {
@@ -99,7 +95,7 @@ public struct SignInView: View {
                                 }
                             }
                         }
-                        .disabled(!viewModel.isFormValid || viewModel.isLoading)
+                        .disabled(!viewModel.isSignInFormValid || viewModel.isLoading)
                         .padding(.top, 8)
 
                         // Navigate to Sign Up

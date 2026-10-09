@@ -152,6 +152,21 @@ public final class MockAuthService: AuthServiceProtocol, @unchecked Sendable {
         updateCurrentProfile(nil)
     }
 
+    public func accountDeletionProvider() -> AccountDeletionProvider { .password }
+
+    public func reauthenticateForDeletion(credential: AccountDeletionCredential) async throws {
+        guard currentUser() != nil else { throw AuthServiceError.notAuthenticated }
+        if case .password(let password) = credential, password.isEmpty {
+            throw AuthServiceError.invalidCredentials
+        }
+    }
+
+    public func deleteAccount(appleAuthorizationCode: String?) async throws {
+        try await applyDelay()
+        guard currentUser() != nil else { throw AuthServiceError.notAuthenticated }
+        updateCurrentProfile(nil)
+    }
+
     // MARK: - Helpers
 
     public func setProfileDirectly(_ profile: UserProfile?) {

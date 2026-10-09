@@ -1,0 +1,10 @@
+This is a redesigned native application for YARMINSK at 18 Volodarskogo Street, Minsk. This new app record (by.yarminsk.app) replaces the previously submitted YARMINSK app, Apple ID 6752119729. The following changes address the issues raised in that earlier review.
+
+Changes addressing the previous review:
+• 5.1.1: The app opens on a public home screen. Home, the complete food and non-alcoholic drinks menu, contact information, the embedded Yandex map and directions are available without an account. Sign-in is only used for a personal loyalty card.
+• 2.3.3: The screenshots are captured from the native app running on separate iPhone and iPad simulators, at their native screen resolutions. They show the current home, menu and contacts screens.
+• 1.4.3: The new public menu contains only food and non-alcoholic drinks. The app does not offer tobacco, nicotine, hookah, vaping, or alcohol products or orders.
+
+Account features can be inspected from the "Моя карта" tab. The supplied review account has been verified and starts with the loyalty card form; enter a name and phone number to create its card. For account deletion, sign in, open the account menu and choose "Удалить аккаунт". The user reauthenticates, then the loyalty record and Firebase Authentication account are deleted. Linked Apple accounts additionally revoke Apple authorization. Please do not delete the reusable review account; a reviewer can create a separate email/password account to inspect deletion. A live Firebase test verified deletion of both the test card and its authentication account.
+
+The privacy policy, including information about account data, third-party SDKs, maps and deletion, is bundled in the app and opens from the public home screen, contacts, registration form, and account menu.

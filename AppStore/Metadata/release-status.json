@@ -1,0 +1,92 @@
+{
+  "checkedAt": "2026-10-09T21:14:40.933115+00:00",
+  "appStoreAppId": "6821147058",
+  "teamId": "2W876M34X7",
+  "bundleId": "by.yarminsk.app",
+  "version": "1.0",
+  "newBuild": "1",
+  "appStoreConnectStatus": "Waiting for Review",
+  "selectedBuild": "1.0 (1)",
+  "newBuildUploaded": true,
+  "submittedForReview": true,
+  "released": false,
+  "savedMetadata": [
+    "Russian description",
+    "Promotional text",
+    "Keywords",
+    "Subtitle",
+    "Food & Drink category",
+    "Review notes",
+    "Automatic release after approval",
+    "Content rights declaration",
+    "Age rating questionnaire"
+  ],
+  "screenshots": {
+    "iPhoneDynamicIslandMedium": 4,
+    "iPhoneDynamicIslandLarge": 4,
+    "iPad13": 4
+  },
+  "appIcon": {
+    "path": "Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+    "size": "1024x1024",
+    "includedInLocalArchive": true,
+    "uploadedWithNewBuild": true
+  },
+  "privacyLabelsPublished": true,
+  "supportUrl": "https://yarminsk-app-support.web.app/",
+  "privacyPolicyUrl": "https://yarminsk-app-support.web.app/privacy.html",
+  "privacyChoicesUrl": "https://yarminsk-app-support.web.app/#account-deletion",
+  "publicSupportDeployment": "Firebase Hosting site yarminsk-app-support in existing project yarkalyan-6bbef",
+  "price": "Free",
+  "availableRegionCount": 18,
+  "belarusAvailable": true,
+  "verification": {
+    "testsPassed": 19,
+    "testFailures": 0,
+    "liveFirebaseAccountAndCardDeletion": "passed",
+    "reviewAccountSignIn": "passed",
+    "reviewAccountHasCard": false,
+    "releaseSimulatorBuild": "passed",
+    "unsignedDeviceArchive": "passed",
+    "signedArchive": "passed",
+    "exportUpload": "passed"
+  },
+  "uploadFailure": [],
+  "nextSteps": [
+    "Await Apple App Review. Automatic release is enabled after approval."
+  ],
+  "openBusinessQuestion": "Confirm the actual loyalty discount scope before claiming that it only applies to food and non-alcoholic drinks. Previous Apple rejection explicitly included tobacco-related concept/content under 1.4.3.",
+  "providerVerificationLimit": "Live Firebase deletion test used email/password. Apple and Google interactive sign-in and Apple revocation were not validated end-to-end in this release session.",
+  "appName": "Яр Минск",
+  "previousUploadValidationIssue": "Initial new-app upload required all four iPad interface orientations. Fixed in Resources/Info.plist; subsequent archive and upload succeeded.",
+  "oldApp": {
+    "appStoreAppId": "6752119729",
+    "name": "YARMINSK",
+    "bundleId": "com.yarkalyan.yarhookah",
+    "removed": true,
+    "appStoreConnectStatus": "Removed",
+    "removedFromAllRegions": true
+  },
+  "submissionId": "a3f7b15a-28dd-4284-bf03-5515951c7c22",
+  "automaticReleaseAfterApproval": true,
+  "availableRegions": [
+    "Belarus",
+    "Czech Republic",
+    "Egypt",
+    "Georgia",
+    "Italy",
+    "Kazakhstan",
+    "Kyrgyzstan",
+    "Latvia",
+    "Maldives",
+    "Mongolia",
+    "Portugal",
+    "Russia",
+    "Slovenia",
+    "Tajikistan",
+    "Türkiye",
+    "Turkmenistan",
+    "Ukraine",
+    "Uzbekistan"
+  ]
+}

@@ -1,0 +1,670 @@
+{
+  "updatedAt": "2026-10-08",
+  "categories": [
+    {
+      "id": "salads",
+      "title": "Салаты",
+      "note": null,
+      "items": [
+        {
+          "id": "salads-1",
+          "name": "Цезарь с курицей",
+          "price": 29,
+          "portion": "390 г",
+          "description": "Салат, томаты черри, яйцо, куриная грудка, пармезан, гренки, бекон, соус"
+        },
+        {
+          "id": "salads-2",
+          "name": "Цезарь с креветками",
+          "price": 34,
+          "portion": "370 г",
+          "description": "Салат, томаты черри, яйцо, креветки, пармезан, гренки, бекон, соус"
+        }
+      ]
+    },
+    {
+      "id": "burgers",
+      "title": "Бургеры",
+      "note": null,
+      "items": [
+        {
+          "id": "burgers-1",
+          "name": "Двойной BBQ",
+          "price": 31,
+          "portion": "410/70/30 г",
+          "description": "Две котлеты, сыр чеддер, бекон, лук, томат, соусы"
+        },
+        {
+          "id": "burgers-2",
+          "name": "Dirty Burger",
+          "price": 30,
+          "portion": "250/70/30 г",
+          "description": "Котлета, свинина, бекон, сыр, лук, огурец, соусы"
+        },
+        {
+          "id": "burgers-3",
+          "name": "Классический / Чили",
+          "price": 28,
+          "portion": "410/70/30 г",
+          "description": "Котлета, томат, лук, сыр чеддер, салат айсберг, огурец или халапеньо, соусы"
+        },
+        {
+          "id": "burgers-4",
+          "name": "С шампиньонами и сыром Дор-Блю",
+          "price": 31,
+          "portion": "350/70/30 г",
+          "description": "Котлета, лук, шампиньоны, дор-блю, огурец, соусы"
+        },
+        {
+          "id": "burgers-5",
+          "name": "С карамелизированным луком",
+          "price": 29,
+          "portion": "320/70/30 г",
+          "description": "Котлета, лук, яйцо, сыр чеддер, огурец, соусы"
+        },
+        {
+          "id": "burgers-6",
+          "name": "Pizza Burger",
+          "price": 30,
+          "portion": "340/70/30 г",
+          "description": "Котлета, томат, лук, бекон, салями, огурец, сыр чеддер, луковые кольца, соусы"
+        },
+        {
+          "id": "burgers-7",
+          "name": "Chichen Crispy Burger",
+          "price": 29,
+          "portion": "410/70/30 г",
+          "description": "Курица, сыр чеддер, лук, огурец, салат айсберг, томат, соус"
+        },
+        {
+          "id": "burgers-8",
+          "name": "Fish Burger",
+          "price": 29,
+          "portion": "350/70/30 г",
+          "description": "Две рыбные котлеты, лук, салат чука, салат айсберг, соус"
+        },
+        {
+          "id": "burgers-9",
+          "name": "Shrimp Burger",
+          "price": 36,
+          "portion": "390/70/30 г",
+          "description": "Котлета, аргентинские креветки, авокадо, сыр чеддер, бекон, томат, лук, соусы"
+        },
+        {
+          "id": "burgers-10",
+          "name": "Вегетарианский",
+          "price": 27,
+          "portion": "290/70/30 г",
+          "description": "Моцарелла, чеддер, лук, шампиньоны, томат, огурец, салат айсберг, соусы"
+        }
+      ]
+    },
+    {
+      "id": "starters",
+      "title": "Горячие закуски",
+      "note": null,
+      "items": [
+        {
+          "id": "starters-1",
+          "name": "Куриные крылья",
+          "price": 25,
+          "portion": "300/70/30 г",
+          "description": "Острые или оригинальные. Куриные крылышки, соус, картофель"
+        },
+        {
+          "id": "starters-2",
+          "name": "Сырные шарики с луковыми кольцами",
+          "price": 25,
+          "portion": "200/60 г",
+          "description": "Сырные шарики, луковые кольца, соусы"
+        },
+        {
+          "id": "starters-3",
+          "name": "Куриные наггетсы",
+          "price": 24,
+          "portion": "250/30/30 г",
+          "description": "Куриная грудка, корнишоны, соус"
+        },
+        {
+          "id": "starters-4",
+          "name": "Чесночные гренки с соусом",
+          "price": 15,
+          "portion": "150/50 г",
+          "description": "Чесночные гренки, соус"
+        },
+        {
+          "id": "starters-5",
+          "name": "Big Meat Party",
+          "price": 133,
+          "portion": "2000 г",
+          "description": "Куриные крылья, рёбра, картофель, соус"
+        },
+        {
+          "id": "starters-6",
+          "name": "Большая доска",
+          "price": 89,
+          "portion": "1100 г",
+          "description": "Крылья и наггетсы, колбаски, сырные шарики, картофель, луковые кольца, гренки"
+        },
+        {
+          "id": "starters-7",
+          "name": "Тар-тар из тунца",
+          "price": 40,
+          "portion": "150/70/60/20 г",
+          "description": "Тунец, авокадо, гренки, томаты черри, салат, лайм, кунжутное масло"
+        },
+        {
+          "id": "starters-8",
+          "name": "Тар-тар из говядины",
+          "price": 38,
+          "portion": "320 г",
+          "description": "Говядина, гренки, горчица, каперсы, корнишоны, лук, яичный желток"
+        },
+        {
+          "id": "starters-9",
+          "name": "Креветки гриль",
+          "price": 47,
+          "portion": "180/60/40/30 г",
+          "description": "Креветки, томаты черри, салат, лимон, соус"
+        }
+      ]
+    },
+    {
+      "id": "mains",
+      "title": "Горячие блюда",
+      "note": "Кухня: будни 15:00–23:00, выходные 15:00–01:00",
+      "items": [
+        {
+          "id": "mains-1",
+          "name": "Fish and Chips",
+          "price": 27,
+          "portion": "500 г",
+          "description": "Рыба, картофель"
+        },
+        {
+          "id": "mains-2",
+          "name": "Стейк Филе-Миньон",
+          "price": 48,
+          "portion": "180/100/130/50 г",
+          "description": "Говяжья вырезка, овощи гриль, соус"
+        },
+        {
+          "id": "mains-3",
+          "name": "Стейк из тунца",
+          "price": 48,
+          "portion": "220/60/40/30 г",
+          "description": "Тунец, томаты черри, салат, лимон, соус"
+        },
+        {
+          "id": "mains-4",
+          "name": "Драники с говяжьими щеками и яйцом",
+          "price": 29,
+          "portion": "400 г",
+          "description": "Картофель, яйцо, говяжьи щёки"
+        },
+        {
+          "id": "mains-5",
+          "name": "Говяжьи щёки",
+          "price": 35,
+          "portion": "280/100/100/30 г",
+          "description": "Говяжьи щёки, картофель, соус"
+        },
+        {
+          "id": "mains-6",
+          "name": "Запечённые свиные рёбра",
+          "price": 35,
+          "portion": "500/100/100/20 г",
+          "description": "Свиные рёбра, лук, соус"
+        },
+        {
+          "id": "mains-7",
+          "name": "Драники с шампиньонами и яйцом",
+          "price": 27,
+          "portion": "380 г",
+          "description": "Картофель, шампиньоны, яйцо"
+        }
+      ]
+    },
+    {
+      "id": "snacks",
+      "title": "Снэки",
+      "note": null,
+      "items": [
+        {
+          "id": "snacks-1",
+          "name": "Арахис с паприкой",
+          "price": 7,
+          "portion": "60 г",
+          "description": "Арахис в хрустящей корочке"
+        },
+        {
+          "id": "snacks-2",
+          "name": "Арахис со вкусом плавленого сыра",
+          "price": 7,
+          "portion": "60 г",
+          "description": "Арахис в хрустящей корочке"
+        },
+        {
+          "id": "snacks-3",
+          "name": "Арахис со вкусом васаби",
+          "price": 7,
+          "portion": "60 г",
+          "description": "Арахис в хрустящей корочке"
+        },
+        {
+          "id": "snacks-4",
+          "name": "Арахис обжаренный солёный",
+          "price": 7,
+          "portion": "80 г",
+          "description": ""
+        },
+        {
+          "id": "snacks-5",
+          "name": "Арахис обжаренный",
+          "price": 7,
+          "portion": "80 г",
+          "description": ""
+        },
+        {
+          "id": "snacks-6",
+          "name": "Арахис со вкусом барбекю",
+          "price": 7,
+          "portion": "60 г",
+          "description": "Арахис в хрустящей корочке"
+        },
+        {
+          "id": "snacks-7",
+          "name": "Фисташки",
+          "price": 15,
+          "portion": "100 г",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": "desserts",
+      "title": "Десерты",
+      "note": null,
+      "items": [
+        {
+          "id": "desserts-1",
+          "name": "Чизкейк New York",
+          "price": 13,
+          "portion": "112 г",
+          "description": ""
+        },
+        {
+          "id": "desserts-2",
+          "name": "Чизкейк карамельный",
+          "price": 13,
+          "portion": "114 г",
+          "description": ""
+        },
+        {
+          "id": "desserts-3",
+          "name": "Мороженое",
+          "price": 14,
+          "portion": "100 г",
+          "description": "Ваниль, шоколад или фисташка-кешью"
+        }
+      ]
+    },
+    {
+      "id": "coffee",
+      "title": "Кофе",
+      "note": null,
+      "items": [
+        {
+          "id": "coffee-1",
+          "name": "Эспрессо",
+          "price": 7,
+          "portion": "30 мл",
+          "description": ""
+        },
+        {
+          "id": "coffee-2",
+          "name": "Американо",
+          "price": 7,
+          "portion": "250 мл",
+          "description": ""
+        },
+        {
+          "id": "coffee-3",
+          "name": "Капучино",
+          "price": 9,
+          "portion": "250 мл",
+          "description": ""
+        },
+        {
+          "id": "coffee-4",
+          "name": "Латте",
+          "price": 10,
+          "portion": "300 мл",
+          "description": ""
+        },
+        {
+          "id": "coffee-5",
+          "name": "Айс латте",
+          "price": 10,
+          "portion": "400 мл",
+          "description": ""
+        },
+        {
+          "id": "coffee-6",
+          "name": "Бамбл",
+          "price": 11,
+          "portion": "300 мл",
+          "description": ""
+        },
+        {
+          "id": "coffee-7",
+          "name": "Эспрессо-тоник",
+          "price": 11,
+          "portion": "400 мл",
+          "description": ""
+        },
+        {
+          "id": "coffee-8",
+          "name": "Флет уайт",
+          "price": 11,
+          "portion": "200 мл",
+          "description": ""
+        },
+        {
+          "id": "coffee-9",
+          "name": "Двойной эспрессо",
+          "price": 10,
+          "portion": "60 мл",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "id": "tea",
+      "title": "Чай",
+      "note": null,
+      "items": [
+        {
+          "id": "tea-1",
+          "name": "Мария Антуанетта",
+          "price": 14,
+          "portion": "500 мл",
+          "description": "Чёрный чай с лепестками роз, ягодами клубники, ежевики и чёрной смородины · 1 л — 25 BYN"
+        },
+        {
+          "id": "tea-2",
+          "name": "Золото Индии",
+          "price": 14,
+          "portion": "500 мл",
+          "description": "Классический чёрный чай · 1 л — 25 BYN"
+        },
+        {
+          "id": "tea-3",
+          "name": "Легенда Англии",
+          "price": 14,
+          "portion": "500 мл",
+          "description": "Чёрный чай с ароматом бергамота · 1 л — 25 BYN"
+        },
+        {
+          "id": "tea-4",
+          "name": "Всем, чабрец!",
+          "price": 14,
+          "portion": "500 мл",
+          "description": "Чёрный чай с чабрецом и иван-чаем · 1 л — 25 BYN"
+        },
+        {
+          "id": "tea-5",
+          "name": "Полярная звезда",
+          "price": 14,
+          "portion": "500 мл",
+          "description": "Чёрный чай с ежевикой, брусникой, календулой и васильком · 1 л — 25 BYN"
+        },
+        {
+          "id": "tea-6",
+          "name": "Лесная симфония",
+          "price": 14,
+          "portion": "500 мл",
+          "description": "Зелёный чай с ежевикой, брусникой, календулой и васильком · 1 л — 25 BYN"
+        },
+        {
+          "id": "tea-7",
+          "name": "Млечный путь",
+          "price": 14,
+          "portion": "500 мл",
+          "description": "Классический молочный улун · 1 л — 25 BYN"
+        },
+        {
+          "id": "tea-8",
+          "name": "Эликсир жизни",
+          "price": 14,
+          "portion": "500 мл",
+          "description": "Жасминовый зелёный чай с вишней · 1 л — 25 BYN"
+        },
+        {
+          "id": "tea-9",
+          "name": "Виноградная лоза",
+          "price": 14,
+          "portion": "500 мл",
+          "description": "Улун с ароматом винограда · 1 л — 25 BYN"
+        },
+        {
+          "id": "tea-10",
+          "name": "Энергия природы",
+          "price": 14,
+          "portion": "500 мл",
+          "description": "Листья земляники, ягоды чёрной смородины, ромашка, мята, чабрец и василёк · 1 л — 25 BYN"
+        },
+        {
+          "id": "tea-11",
+          "name": "Красный дракон",
+          "price": 14,
+          "portion": "500 мл",
+          "description": "Гибискус с ежевикой, клубникой и смородиной · 1 л — 25 BYN"
+        }
+      ]
+    },
+    {
+      "id": "ceremony",
+      "title": "Чайная церемония",
+      "note": null,
+      "items": [
+        {
+          "id": "ceremony-1",
+          "name": "Да Хун Пао Шу Сян",
+          "price": 30,
+          "portion": "",
+          "description": "Традиционный уишаньский улун с пряно-цветочными оттенками"
+        },
+        {
+          "id": "ceremony-2",
+          "name": "Юэ Гуан Бай",
+          "price": 30,
+          "portion": "",
+          "description": "Юннаньский белый чай с фруктовыми и цветочными нотами"
+        },
+        {
+          "id": "ceremony-3",
+          "name": "Те Гуань Инь",
+          "price": 30,
+          "portion": "",
+          "description": "Южнофуцзяньский улун с ароматом свежей зелени и лёгкой кислинкой"
+        },
+        {
+          "id": "ceremony-4",
+          "name": "Те Гуань Инь Анси",
+          "price": 30,
+          "portion": "",
+          "description": "Осенний сбор из уезда Аньси с выраженным бархатистым вкусом"
+        },
+        {
+          "id": "ceremony-5",
+          "name": "Жоу Гуй Тан Бей",
+          "price": 30,
+          "portion": "",
+          "description": "Тёмный улун с ароматом специй и сухофруктов"
+        },
+        {
+          "id": "ceremony-6",
+          "name": "Фен Хуан Дянь Цун",
+          "price": 30,
+          "portion": "",
+          "description": "Цветочно-медовый аромат, плотный вкус с лёгкой терпкостью"
+        },
+        {
+          "id": "ceremony-7",
+          "name": "Дянь Хун Сун Чжень",
+          "price": 30,
+          "portion": "",
+          "description": "Юннаньский красный чай с ароматом персиков и серого хлеба"
+        },
+        {
+          "id": "ceremony-8",
+          "name": "Гун Тин Шу Пуэр",
+          "price": 30,
+          "portion": "",
+          "description": "Императорский пуэр с древесным ароматом и ореховыми нотками"
+        },
+        {
+          "id": "ceremony-9",
+          "name": "Шу Юань",
+          "price": 30,
+          "portion": "",
+          "description": "Юннаньский шен с диких деревьев, нотами специй и кураги"
+        },
+        {
+          "id": "ceremony-10",
+          "name": "Габба Алишань",
+          "price": 30,
+          "portion": "",
+          "description": "Тайваньский улун с ягодно-пряными нотами и оттенками орехов"
+        }
+      ]
+    },
+    {
+      "id": "cold",
+      "title": "Холодные напитки",
+      "note": null,
+      "items": [
+        {
+          "id": "cold-1",
+          "name": "Coca-Cola classic / zero",
+          "price": 7,
+          "portion": "0,33 л",
+          "description": ""
+        },
+        {
+          "id": "cold-2",
+          "name": "Sprite",
+          "price": 7,
+          "portion": "0,33 л",
+          "description": ""
+        },
+        {
+          "id": "cold-3",
+          "name": "Redbull",
+          "price": 11,
+          "portion": "0,33 л",
+          "description": ""
+        },
+        {
+          "id": "cold-4",
+          "name": "Schweppes Tonic",
+          "price": 7,
+          "portion": "0,33 л",
+          "description": ""
+        },
+        {
+          "id": "cold-5",
+          "name": "Edis",
+          "price": 15,
+          "portion": "0,5 л",
+          "description": ""
+        },
+        {
+          "id": "cold-6",
+          "name": "Edis",
+          "price": 19,
+          "portion": "0,95 л",
+          "description": ""
+        },
+        {
+          "id": "cold-7",
+          "name": "Rich",
+          "price": 4,
+          "portion": "0,2 л",
+          "description": "В ассортименте"
+        }
+      ]
+    },
+    {
+      "id": "lemonade",
+      "title": "Лимонады",
+      "note": null,
+      "items": [
+        {
+          "id": "lemonade-1",
+          "name": "Ананас-клубника",
+          "price": 14,
+          "portion": "0,4 л",
+          "description": "Ананас, клубника, ревень · 1 л — 25 BYN"
+        },
+        {
+          "id": "lemonade-2",
+          "name": "Тропический лимонад",
+          "price": 14,
+          "portion": "0,4 л",
+          "description": "Маракуйя, лимон, базилик · 1 л — 25 BYN"
+        },
+        {
+          "id": "lemonade-3",
+          "name": "Безалкогольное мохито",
+          "price": 14,
+          "portion": "0,4 л",
+          "description": "Листья мяты, лайм, спрайт · 1 л — 25 BYN"
+        },
+        {
+          "id": "lemonade-4",
+          "name": "Брусника-имбирь",
+          "price": 14,
+          "portion": "0,4 л",
+          "description": "Брусника, имбирь, лимон · 1 л — 25 BYN"
+        }
+      ]
+    },
+    {
+      "id": "hot",
+      "title": "Горячие напитки",
+      "note": null,
+      "items": [
+        {
+          "id": "hot-1",
+          "name": "Облепиховый шарм",
+          "price": 27,
+          "portion": "1000 мл",
+          "description": "Пюре облепихи, апельсин, мёд"
+        },
+        {
+          "id": "hot-2",
+          "name": "Малина-мята",
+          "price": 27,
+          "portion": "1000 мл",
+          "description": ""
+        },
+        {
+          "id": "hot-3",
+          "name": "Суету навести охота",
+          "price": 27,
+          "portion": "1000 мл",
+          "description": "Вишня, вишнёвый сок и сироп, императорский пуэр"
+        },
+        {
+          "id": "hot-4",
+          "name": "Как обычно — всё клубнично",
+          "price": 27,
+          "portion": "1000 мл",
+          "description": "Клубника, клубничное пюре, пюре имбиря, лимон"
+        }
+      ]
+    }
+  ]
+}

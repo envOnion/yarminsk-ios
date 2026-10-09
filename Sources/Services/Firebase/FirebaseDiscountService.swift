@@ -57,4 +57,9 @@ public final class FirebaseDiscountService: DiscountServiceProtocol, @unchecked 
 
         try await rootRef.child("discount").child(card.userId).setValue(dict)
     }
+
+    public func deleteDiscount(userId: String) async throws {
+        // Await server acknowledgement before removing the authentication account.
+        try await rootRef.child("discount").child(userId).removeValue()
+    }
 }

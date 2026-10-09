@@ -10,6 +10,7 @@ public struct PreRegistrationView: View {
     @State private var isPhoneValid: Bool = false
     @State private var email: String = ""
     @State private var isAgreed: Bool = false
+    @State private var showPrivacy = false
 
     public init(viewModel: LoyaltyViewModel) {
         self.viewModel = viewModel
@@ -95,6 +96,9 @@ public struct PreRegistrationView: View {
                     isChecked: $isAgreed
                 )
                 .padding(.vertical, 4)
+                Button("Политика конфиденциальности") { showPrivacy = true }
+                    .font(.yarBodyXSRegular)
+                    .foregroundColor(.yarSubject40)
 
                 // Error message banner
                 if let errorMessage = viewModel.errorMessage, !errorMessage.isEmpty {
@@ -125,6 +129,7 @@ public struct PreRegistrationView: View {
             .padding(.horizontal, 24)
         }
         .background(Color.yarSubject95.ignoresSafeArea())
+        .sheet(isPresented: $showPrivacy) { PrivacyPolicyView() }
         .onAppear {
             prefillUserData()
         }

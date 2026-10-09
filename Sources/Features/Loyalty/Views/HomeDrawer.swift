@@ -7,6 +7,9 @@ public struct HomeDrawer: View {
     public let onSignOut: () -> Void
 
     @State private var showSignOutAlert: Bool = false
+    @State private var showDeletion = false
+    @State private var showPrivacy = false
+    @EnvironmentObject private var container: AppContainer
 
     public init(
         isOpen: Binding<Bool>,
@@ -37,6 +40,8 @@ public struct HomeDrawer: View {
             }
         }
         .animation(.easeInOut(duration: 0.25), value: isOpen)
+        .sheet(isPresented: $showDeletion) { AccountDeletionView(container: container) }
+        .sheet(isPresented: $showPrivacy) { PrivacyPolicyView() }
         .yarAlert(
             isPresented: $showSignOutAlert,
             title: "Вы действительно хотите выйти?",
@@ -126,7 +131,22 @@ public struct HomeDrawer: View {
 
                     Spacer()
 
-                    // Bottom Right: Sign Out Button
+                    VStack(alignment: .leading, spacing: 20) {
+                        Button { showPrivacy = true } label: {
+                            Label("Политика конфиденциальности", systemImage: "hand.raised")
+                                .foregroundColor(.yarSubject40)
+                        }
+                        Button(role: .destructive) { showDeletion = true } label: {
+                            Label("Удалить аккаунт", systemImage: "person.crop.circle.badge.minus")
+                                .foregroundColor(.yarError)
+                        }
+                        .accessibilityIdentifier("account.delete")
+                    }
+                    .font(.yarBodySRegular)
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 28)
+
+                    // Sign out keeps the account and card; deletion is a separate confirmed action.
                     HStack {
                         Spacer()
 

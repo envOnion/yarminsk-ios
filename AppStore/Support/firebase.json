@@ -1,0 +1,21 @@
+{
+  "hosting": {
+    "site": "yarminsk-app-support",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*"
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -27,6 +27,11 @@ public final class MockDiscountService: DiscountServiceProtocol, @unchecked Send
         }
     }
 
+    public func deleteDiscount(userId: String) async throws {
+        try await applyDelay()
+        _ = lock.withLock { cardsByUserId.removeValue(forKey: userId) }
+    }
+
     // MARK: - Testing & Previews Helpers
 
     /// Direct synchronous access for test assertions and previews
